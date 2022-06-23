@@ -33,8 +33,6 @@ I will put an example here when all ready.
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 <!-- ROADMAP -->
 
 ## Roadmap
@@ -44,8 +42,6 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Add a good documentation
 - [ ] Add Browser support
 - [ ] Write and publish some examples to github.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
 
@@ -65,8 +61,6 @@ Don't forget to give the project a star! Thanks.
 5. Open a Pull Request
 
 (Please make sure to use the same linter)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- LICENSE -->
 
