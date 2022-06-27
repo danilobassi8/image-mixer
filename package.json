@@ -1,5 +1,5 @@
 {
-  "version": "0.0.3",
+  "version": "0.0.5",
   "license": "MIT",
   "description": "Javascript/Typescript Library to mix images.",
   "keywords": [
@@ -28,7 +28,7 @@
   "peerDependencies": {},
   "husky": {
     "hooks": {
-      "pre-commit": "tsdx lint"
+      "pre-commit": "npm run lint"
     }
   },
   "prettier": {
