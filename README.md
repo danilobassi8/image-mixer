@@ -1,6 +1,6 @@
 <!-- Header with some shields -->
 
-# [Image-mixer](https://reactjs.org/) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/danilobassi8/image-mixer/blob/master/LICENSE.txt) [![npm version](https://img.shields.io/npm/v/image-mixer.svg?style=flat)](https://www.npmjs.com/package/react) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/danilobassi8/image-mixer) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://reactjs.org/docs/how-to-contribute.html#your-first-pull-request)
+# [Image-mixer](https://github.com/danilobassi8/image-mixer) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/danilobassi8/image-mixer/blob/master/LICENSE.txt) [![npm version](https://img.shields.io/npm/v/image-mixer.svg?style=flat)](https://www.npmjs.com/package/react) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/danilobassi8/image-mixer) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#contributing)
 
 <!-- About -->
 
