@@ -1,37 +1,34 @@
-<div id="top"></div>
+<!-- Header with some shields -->
 
-<!-- PROJECT SHIELDS -->
-<!--  See the bottom of this document for the declaration of the reference variables -->
+# [Image-mixer](https://reactjs.org/) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/danilobassi8/image-mixer/blob/master/LICENSE.txt) [![npm version](https://img.shields.io/npm/v/image-mixer.svg?style=flat)](https://www.npmjs.com/package/react) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/danilobassi8/image-mixer) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://reactjs.org/docs/how-to-contribute.html#your-first-pull-request)
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+<!-- About -->
 
-<!-- ABOUT THE PROJECT -->
+[Image-mixer](https://github.com/danilobassi8/image-mixer/blob/master) is a NPM package that helps users to mix layers of images into a sigle file.
+Currently only works in [node.js](https://nodejs.org/en/), but it will work on browsers in a near future!
 
-## About
+This library will also help users with the maths if you want! If you assign a probability for each of your images or layers, it will tell you what's the probability or rareness of each of the generated images. ([See the docs](#documentation))
 
-`Image-mixer` is a NPM package that will help users to mix layers of images into a sigle file.
-Currently only works in node, but it will work on browsers in a near future!
-
-This library will also help users with the maths! If you assign a probability for each of your images or layers, it will tell you whats the probability or rareness of each of the generated images. (See usage section)
-
+<!-- TOC -->
 ## Getting Started
 
 ```sh
 npm install image-mixer
 ```
 
-<!-- USAGE EXAMPLES -->
+## Table of contents
 
-## Usage
+- [Getting Started](#getting-started)
+- [Documentation](#documentation)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [License](#license)
 
-I will put an example here when all ready.
+## Documentation
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+- [Documentation for Node.js](https://github.com/danilobassi8/image-mixer/blob/master/docs/node.md)
+- [Documentation for browsers](https://github.com/danilobassi8/image-mixer/blob/master/docs/browsers.md)
+
 
 <!-- ROADMAP -->
 
@@ -60,13 +57,12 @@ Don't forget to give the project a star! Thanks.
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-(Please make sure to use the same linter)
+(Please make sure to run `npm run lint` before opening a PR)
 
 <!-- LICENSE -->
-
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See [LICENSE](https://github.com/danilobassi8/image-mixer/blob/master/LICENSE.txt) for more information.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- SHIELDS -->
@@ -80,7 +76,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- URLS-->
 
-[license-url]: https://github.com/danilobassi8/image-mixer/blob/master/LICENSE
+[license-url]: https://github.com/danilobassi8/image-mixer/blob/master/LICENSE.txt
 [contributors-url]: https://github.com/danilobassi8/image-mixer/graphs/contributors
 [forks-url]: https://github.com/danilobassi8/image-mixer/network/members
 [stars-url]: https://github.com/danilobassi8/image-mixer/stargazers

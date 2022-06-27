@@ -32,7 +32,7 @@ export class Layer {
     this.name = args.name;
     this.probability = args.probability;
 
-    this.required = this.probability == 1 ? true : false;
+    this.required = this.probability === 1 ? true : false;
     this.directory = `${PATH_DIR}/${this.name}`;
     this.childLayers = args.childLayers;
   }
@@ -52,7 +52,7 @@ export class Layer {
     );
 
     // append an empty png on each layer if the layer probability is not 1
-    if (this.probability != 1) {
+    if (this.probability !== 1) {
       files.push(
         new LayerFile({
           filename: 'transparent.png',

@@ -38,9 +38,7 @@ export class LayerFile {
   /** check if the file exists */
   exists(): boolean {
     try {
-      if (fs.existsSync(this.path)) {
-        return true;
-      }
+      return fs.existsSync(this.path);
     } catch (err) {
       return false;
     }

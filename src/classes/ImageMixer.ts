@@ -45,7 +45,7 @@ export class ImageMixer {
 
   private initialChecks() {
     /** check if the output directory is valid */
-    if (!fs.existsSync(this.output)) throw `${this.output} is not a valid directory.`;
+    if (!fs.existsSync(this.output)) throw new Error(`${this.output} is not a valid directory.`);
   }
 
   async generateResults() {
