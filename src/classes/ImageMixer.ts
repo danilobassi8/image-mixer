@@ -45,12 +45,18 @@ export class ImageMixer {
 
   private initialChecks() {
     /** check if the output directory is valid */
-    if (!fs.existsSync(this.output)) throw new Error(`${this.output} is not a valid directory.`);
+    if (this.output) {
+      if (!fs.existsSync(this.output)) throw new Error(`${this.output} is not a valid directory.`);
+    }
+  }
+
+  async getAllPossibleCombinations() {
+    const layers = await Promise.all(this.layers.map((layer) => layer.getAllFiles()));
+    return getAllPossibleCombinations(layers);
   }
 
   async generateResults() {
-    const layers = await Promise.all(this.layers.map((layer) => layer.getAllFiles()));
-    const combinedLayers = getAllPossibleCombinations(layers);
+    const combinedLayers = await this.getAllPossibleCombinations();
     const combinations = await combinedLayers
       .map((combination) => {
         return combination

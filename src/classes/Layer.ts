@@ -57,7 +57,7 @@ export class Layer {
         new LayerFile({
           filename: 'transparent.png',
           probability: 1 - this.probability,
-          rootPath: `${process.cwd()}/assets`,
+          rootPath: `${process.cwd()}/node_modules/image-mixer/assets/`, // TODO: check if this handle all import cases.
         })
       );
     }
