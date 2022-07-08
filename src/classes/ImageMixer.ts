@@ -2,7 +2,7 @@ import { Layer } from './Layer';
 import { MixerResult } from './MixerResult';
 import { getAllPossibleCombinations, saveBase64Image, saveBase64ImageSync } from '../utils';
 
-const fs = require('fs');
+import fs from 'fs';
 
 type ImageMixerConstructorOptions = {
   layers: Layer[];
@@ -13,8 +13,8 @@ type ImageMixerConstructorOptions = {
 };
 
 export class ImageMixer {
-  private layers: Layer[];
-  private layersPath: string;
+  public layers: Layer[];
+  public layersPath: string;
 
   /** Indicates if we should return the images in the response object (defaults to true) */
   private returnImages: boolean;

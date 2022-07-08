@@ -1,7 +1,7 @@
 import { LayerFile } from './LayerFile';
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 const PATH_DIR = path.resolve(`${process.cwd()}/layers`);
 

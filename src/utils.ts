@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 /** Saves a Base64 image into a file (sync) */
 export function saveBase64ImageSync(saveBase64Image: any, filename: string) {

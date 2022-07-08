@@ -1,6 +1,6 @@
 import { LayerFile } from './LayerFile';
+import { Canvas, Image } from 'canvas';
 import mergeImages from 'merge-images';
-const { Canvas, Image } = require('canvas');
 
 export class MixerResult {
   files: LayerFile[] = [];
