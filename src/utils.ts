@@ -62,3 +62,10 @@ function mergeArrays(arr1: any[], arr2: any[]): any[] {
     return elements;
   }
 }
+
+export function areSameArray(array1: any[], array2: any[]): boolean {
+  if (array1.length === array2.length) {
+    return array1.every((el1) => (array2.includes(el1) ? true : false));
+  }
+  return false;
+}
