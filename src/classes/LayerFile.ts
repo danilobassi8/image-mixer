@@ -30,7 +30,7 @@ export class LayerFile {
       .filter((file) => file.exists());
   }
 
-  /** return itself and every files related */
+  /** return itself and every files related (for child layers) */
   getAllRelatedFiles(): LayerFile[] {
     return [this, ...this.relatedFiles];
   }

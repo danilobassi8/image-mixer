@@ -2,8 +2,13 @@ import { Layer } from './../src/classes/Layer';
 import { ImageMixer } from './../src/classes/ImageMixer';
 import { BASIC_FACE_MOCK } from './mocks/files';
 import { getAllPossibleCombinations } from '../src/utils';
-
+import { areSameArray } from '../src/utils';
 import mock from 'mock-fs';
+
+// Mock the merge-images library.
+jest.mock('merge-images', () => {
+  return () => '';
+});
 
 describe('Basic image tree', () => {
   afterAll(() => {
@@ -52,7 +57,38 @@ describe('Basic image tree', () => {
     const layerFiles = await Promise.all(mixer.layers.map(async (layer) => layer.getAllFiles()));
     const combinations = getAllPossibleCombinations(layerFiles);
 
-    // hacer que combinations y generatedCombinatiosn sean iguales
-    console.log(combinations);
+    combinations.forEach((comb) => {
+      // foreach combinations, should check if all elements are the same with other the other combination array.
+      const filenames = comb.map((file) => file.filename).sort();
+      const match = generatedCombinations.filter((generated) => {
+        const genFilenames = generated.map((file) => file.filename).sort();
+        return areSameArray(genFilenames, filenames);
+      });
+
+      expect(match.length).toBe(1);
+    });
   });
+
+  it('Should return an error if the output directory is not valid', () => {
+    const path = '/fake/path/to/test';
+    expect(() => new ImageMixer({ layersPath, layers, output: path })).toThrow(
+      `${path} is not a valid directory.`
+    );
+  });
+
+  it('All results should be ordered by layer position', async () => {
+    const results = await mixer.generateResults();
+    results.forEach((res) => {
+      const positions = res.files.map((files) => files.position);
+
+      let lastElement;
+      for (let current of positions) {
+        if (!lastElement) lastElement = current;
+        expect(current).toBeGreaterThanOrEqual(lastElement);
+        lastElement = current;
+      }
+    });
+  });
+
+  it('The probability of a result is the multiplication of all the files in it', async () => {});
 });

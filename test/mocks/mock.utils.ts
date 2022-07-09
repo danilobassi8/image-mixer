@@ -5,4 +5,5 @@ const readBase64Str = (imgPath) => {
   return buff.toString('base64');
 };
 
-export const FAKE_IMAGE = readBase64Str(`${process.cwd()}/assets/transparent.png`);
+export const FAKE_IMAGE_PATH = `${process.cwd()}/assets/transparent.png`;
+export const FAKE_IMAGE = fs.readFileSync(FAKE_IMAGE_PATH);
