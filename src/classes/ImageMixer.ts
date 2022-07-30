@@ -75,6 +75,7 @@ export class ImageMixer {
     const combinedLayers = await this.getAllPossibleCombinations();
     const combinations = await combinedLayers
       .map((combination) => {
+        // add related files for child layers
         return combination
           .map((files) => {
             return files.getAllRelatedFiles();

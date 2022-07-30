@@ -2,7 +2,7 @@ import { Layer } from './../src/classes/Layer';
 import { ImageMixer } from './../src/classes/ImageMixer';
 import { BASIC_FACE_MOCK, MOCK_WITH_CUSTOM_WEIGHTS } from './mocks/files';
 import { getAllPossibleCombinations } from '../src/utils';
-
+import { areSameArray } from '../src/utils';
 import mock from 'mock-fs';
 
 const getLayersForMixerTest = (layersPath, tree) => {
@@ -58,8 +58,23 @@ describe('mixer tests', () => {
       const layerFiles = await Promise.all(mixer.layers.map(async (layer) => layer.getAllFiles()));
       const combinations = getAllPossibleCombinations(layerFiles);
 
-      // TODO: test that this both combinations are the same.
-      // console.log(combinations);
+      combinations.forEach((comb) => {
+        // foreach combinations, should check if all elements are the same with other the other combination array.
+        const filenames = comb.map((file) => file.filename).sort();
+        const match = generatedCombinations.filter((generated) => {
+          const genFilenames = generated.map((file) => file.filename).sort();
+          return areSameArray(genFilenames, filenames);
+        });
+
+        expect(match.length).toBe(1);
+      });
+    });
+
+    it('Should return an error if the output directory is not valid', () => {
+      const path = '/fake/path/to/test';
+      expect(() => new ImageMixer({ layersPath, layers, output: path })).toThrow(
+        `${path} is not a valid directory.`
+      );
     });
   });
 
