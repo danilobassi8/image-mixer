@@ -1,7 +1,6 @@
 import { Layer } from './Layer';
 import { MixerResult } from './MixerResult';
 import { getAllPossibleCombinations, saveBase64Image, saveBase64ImageSync } from '../utils';
-
 import fs from 'fs';
 
 type ImageMixerConstructorOptions = {
@@ -10,6 +9,10 @@ type ImageMixerConstructorOptions = {
   returnImages?: boolean;
   output?: string;
   sync?: boolean;
+
+  /** Custom function that will calculate the file weight based on filename. You can also assign this function to each layer individually. */
+  getFilesWeight?: (filename: string) => number;
+  formatResultName?: (idx: number, probability: number) => string;
 };
 
 export class ImageMixer {
@@ -22,6 +25,8 @@ export class ImageMixer {
   private output: string;
   /** when saving results, if true, will wait to save all files before returning */
   private sync: boolean;
+  /** Function that will return the name of generated files given a secuential index and the images' probability */
+  formatResultName: (idx: number, probability: number) => string;
 
   constructor({
     layersPath,
@@ -29,16 +34,23 @@ export class ImageMixer {
     returnImages = true,
     output = '',
     sync = false,
+    getFilesWeight = () => 1,
+    formatResultName = (idx, prob) => `${prob}_${idx}.png`,
   }: ImageMixerConstructorOptions) {
     this.layersPath = layersPath;
     this.layers = layers.map((layer) => {
       layer.directory = `${this.layersPath}/${layer.name}`;
+      // is the layer doesn't have a function to get the weights, assign one.
+      if (!layer.getFilesWeight) {
+        layer.getFilesWeight = getFilesWeight;
+      }
       return layer;
     });
 
     this.output = output;
     this.returnImages = returnImages;
     this.sync = sync;
+    this.formatResultName = formatResultName;
 
     this.initialChecks();
   }
@@ -55,6 +67,10 @@ export class ImageMixer {
     return getAllPossibleCombinations(layers);
   }
 
+  /**
+   * Generate all mixer results based on mixer attrs. This method will also save the results in the output path
+   * @returns results
+   */
   async generateResults() {
     const combinedLayers = await this.getAllPossibleCombinations();
     const combinations = await combinedLayers
@@ -83,7 +99,7 @@ export class ImageMixer {
     for (const result of results) {
       idx++;
       const img = await result.getImage();
-      const imgOutput = `${this.output}/${result.probability}_${idx}.png`;
+      const imgOutput = `${this.output}/${this.formatResultName(idx, result.probability)}`;
       if (this.sync) {
         // save images synchronously
         saveBase64ImageSync(img, imgOutput);

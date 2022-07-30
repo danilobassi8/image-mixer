@@ -13,8 +13,9 @@ export interface childLayers {
 interface LayerConstructor {
   position: number;
   name: string;
-  probability: number;
+  probability?: number;
   childLayers?: childLayers[];
+  getFilesWeight?: (filename: string) => number;
 }
 
 export class Layer {
@@ -27,14 +28,18 @@ export class Layer {
   files: string[];
   childLayers: childLayers[];
 
+  /** Custom function that will calculate the file weight based on filename */
+  getFilesWeight: (filename: string) => number;
+
   constructor(args: LayerConstructor) {
     this.position = args.position;
     this.name = args.name;
-    this.probability = args.probability;
+    this.probability = args.probability || 1;
 
     this.required = this.probability === 1 ? true : false;
     this.directory = `${PATH_DIR}/${this.name}`;
     this.childLayers = args.childLayers;
+    this.getFilesWeight = args.getFilesWeight;
   }
 
   async getAllFiles(): Promise<LayerFile[]> {
@@ -44,7 +49,7 @@ export class Layer {
       (file) =>
         new LayerFile({
           filename: file,
-          probability: (this.getFileWeightByName(file) / weightSum) * this.probability,
+          probability: (this.getFilesWeight(file) / weightSum) * this.probability,
           rootPath: this.directory,
           position: this.position,
           related: this.childLayers,
@@ -66,12 +71,6 @@ export class Layer {
   }
 
   getWeightSum(files: Array<string>): number {
-    return files.reduce((acum, item) => acum + this.getFileWeightByName(item), 0);
-  }
-
-  getFileWeightByName(file: string): number {
-    // TODO: Change with a customizable function
-    const weight = parseInt(file.split('_')[0]);
-    return weight;
+    return files.reduce((acum, item) => acum + this.getFilesWeight(item), 0);
   }
 }
